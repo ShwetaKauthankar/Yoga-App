@@ -18,7 +18,8 @@ class startSession: AppCompatActivity() {
 
 
 
-    val image = intArrayOf(R.drawable.plank, R.drawable.mountain,R.drawable.downward)
+    val image = intArrayOf(R.drawable.down, R.drawable.mountain,R.drawable.downward)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +29,14 @@ class startSession: AppCompatActivity() {
 
 
         // intialization for timer
+        val imageflip : pl.droidsonroids.gif.GifImageView
         var timerView: TextView
         var start: Button
         var pause: Button
         timerView = findViewById(R.id.timer)
         start = findViewById(R.id.btnStart)
         pause = findViewById(R.id.btnpause)
+        imageflip=findViewById(R.id.v_flipper)
         var i=0
 
 
@@ -52,12 +55,12 @@ class startSession: AppCompatActivity() {
         }
 
         val view = ImageView(this)
-        view.setBackgroundResource(image[i])
-        v_flipper.addView(view)
+        imageflip.setBackgroundResource(image[i])
+        //imageflip.setImageDrawable()
        // v_flipper.setFlipInterval(3000)
        // v_flipper.setAutoStart(true)
-        v_flipper.setInAnimation(this , android.R.anim.slide_in_left)
-        v_flipper.setOutAnimation(this , android.R.anim.slide_out_right)
+      //  v_flipper.setInAnimation(this , android.R.anim.slide_in_left)
+        //v_flipper.setOutAnimation(this , android.R.anim.slide_out_right)
 
 
         start.setOnClickListener {

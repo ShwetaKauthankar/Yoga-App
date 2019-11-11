@@ -16,6 +16,8 @@ class viewClickedActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContentView(R.layout.view_clicked_activity)
 
 

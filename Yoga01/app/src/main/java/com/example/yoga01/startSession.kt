@@ -37,7 +37,7 @@ class startSession: AppCompatActivity() {
         var i=0
 
 
-        timerView.text = "60 Seconds left"
+        timerView.text = "60"
         lateinit var timer: CountDownTimer
         var left = 0
         var time = 10000
@@ -64,7 +64,7 @@ class startSession: AppCompatActivity() {
             timer = object : CountDownTimer(time.toLong(), 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     left = millisUntilFinished.toInt() / 1000
-                    timerView.text = left.toString() + "secound left"
+                    timerView.text = left.toString() + ""
                 }
 
                 override fun onFinish() {
@@ -72,6 +72,8 @@ class startSession: AppCompatActivity() {
                   //   Toast.makeText(this@startSession, "finish", Toast.LENGTH_SHORT).show()
                     i++
                     startActivity(
+
+
                         Intent(this@startSession,nextPose::class.java)
                             .putExtra("image", image[i])
                             .putExtra("val", i)

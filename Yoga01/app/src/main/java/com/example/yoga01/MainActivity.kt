@@ -32,20 +32,17 @@ class MainActivity : AppCompatActivity() {
 
         listview.setOnItemClickListener{ adapterView, view, i, l ->
 
-            startActivity(
-                Intent(this,viewClickedActivity::class.java)
-                    .putExtra("name", list[i])
-            )
-            finish()
+
+            var intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("name",list[i])
+            startActivity(intent)
 
         }
 
         btnStartSession.setOnClickListener {
-            startActivity(
-                Intent(this,startSession::class.java)
 
-            )
-            finish()
+            var intent = Intent(this,startSession::class.java)
+            startActivity(intent)
         }
 
 

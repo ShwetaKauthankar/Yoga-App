@@ -21,11 +21,10 @@ class nextPose: AppCompatActivity() {
         nextimg.setBackgroundResource(image)
 
         btnNext.setOnClickListener {
-            startActivity(
-                Intent(this,startSession::class.java)
-                    .putExtra("val", i)
-            )
-            finish()
+
+            var intent = Intent(this,startSession::class.java)
+            intent.putExtra("val",i)
+            startActivity(intent)
 
         }
 

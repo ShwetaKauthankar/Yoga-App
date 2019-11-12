@@ -1,38 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
     <ViewFlipper
             android:id="@+id/v_flipper"
             android:layout_width="match_parent"
-            android:layout_height="267dp"
-    />
-    <TextView
-            android:text="TextView"
+            android:layout_height="242dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="107dp"
-            android:id="@+id/timer"
-            android:textAlignment="center"
-            android:textSize="40dp"/>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/time">
+
+        <TextView
+                android:id="@+id/timer"
+                android:layout_width="match_parent"
+                android:layout_height="107dp"
+                android:layout_marginTop="96dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="#ECE3E3"
+                android:textSize="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.135" />
+
         <Button
-                android:text="Start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnStart"
-                android:layout_weight="1"/>
-        <Button
-                android:text="Pause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="96dp"
+                android:layout_marginLeft="96dp"
+                android:layout_weight="1"
+                android:text="Start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timer"
+                app:layout_constraintVertical_bias="0.25" />
+
+        <Button
                 android:id="@+id/btnpause"
-                android:layout_weight="1"/>
-    </LinearLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="88dp"
+                android:layout_marginRight="88dp"
+                android:layout_weight="1"
+                android:text="Pause"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timer"
+                app:layout_constraintVertical_bias="0.255" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

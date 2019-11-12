@@ -22,5 +22,18 @@ class StartActivity : AppCompatActivity() {
             intent.putExtra("label","Beginner")
             startActivity(intent)
         }
+
+        intermediate.setOnClickListener {
+            var intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("label","intermediate")
+            startActivity(intent)
+        }
+
+        expert.setOnClickListener {
+            var intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("label","expert")
+            startActivity(intent)
+        }
+
     }
 }

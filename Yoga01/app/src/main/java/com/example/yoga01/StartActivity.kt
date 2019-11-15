@@ -35,5 +35,7 @@ class StartActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
     }
 }

@@ -23,7 +23,7 @@
                 android:layout_marginTop="96dp"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textColor="#ECE3E3"
+                android:textColor="#FFFFFF"
                 android:textSize="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

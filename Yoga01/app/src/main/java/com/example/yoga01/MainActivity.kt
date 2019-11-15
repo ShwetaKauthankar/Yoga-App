@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         listview=findViewById(R.id.listView)
         btnStartSession=findViewById(R.id.btnStartSession)
         var list= mutableListOf<Yoga>()
-        list.add(Yoga(R.drawable.mountain,"mountain"))
+        list.add(Yoga(R.drawable.mountain,"mountain" +
+                "tr45rt4r" +
+                "sdgfsdt"))
         list.add(Yoga(R.drawable.downward,"downward"))
         list.add(Yoga(R.drawable.plank,"plank"))
 
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         listview.setOnItemClickListener{ adapterView, view, i, l ->
 
 
-            var intent = Intent(this,MainActivity::class.java)
+            var intent = Intent(this,viewClickedActivity::class.java)
             intent.putExtra("name",list[i])
             startActivity(intent)
 

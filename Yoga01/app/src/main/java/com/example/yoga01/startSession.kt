@@ -5,11 +5,14 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.start_session.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -18,7 +21,8 @@ class startSession: AppCompatActivity() {
 
 
 
-    val image = intArrayOf(R.drawable.down, R.drawable.mountain,R.drawable.downward)
+   //val image = intArrayOf(R.drawable.down, R.drawable.mountain,R.drawable.downward)
+    var image= mutableListOf<String>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +50,7 @@ class startSession: AppCompatActivity() {
         var time = 10000
 
         i = intent.getIntExtra("val", 0)
-        if(i==2){
+        if(i==9){
             startActivity(
                 Intent(this@startSession,MainActivity::class.java)
 
@@ -54,43 +58,62 @@ class startSession: AppCompatActivity() {
             finish()
         }
 
-        val view = ImageView(this)
-        imageflip.setBackgroundResource(image[i])
-        //imageflip.setImageDrawable()
-       // v_flipper.setFlipInterval(3000)
-       // v_flipper.setAutoStart(true)
-      //  v_flipper.setInAnimation(this , android.R.anim.slide_in_left)
-        //v_flipper.setOutAnimation(this , android.R.anim.slide_out_right)
 
 
-        start.setOnClickListener {
-            timer = object : CountDownTimer(time.toLong(), 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    left = millisUntilFinished.toInt() / 1000
-                    timerView.text = left.toString() + ""
+        // code
+        val db = FirebaseFirestore.getInstance()
+        db.collection("yoga-exercise")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d("main==>", "${document.id} => ${document.data}")
+                   // list.add(Yoga(document.data.get("pose").toString(),document.data.get("name").toString()))
+                    image.add(document.data.get("pose").toString())
                 }
 
-                override fun onFinish() {
-                    // image slider
-                  //   Toast.makeText(this@startSession, "finish", Toast.LENGTH_SHORT).show()
-                    i++
-                    startActivity(
+                val view = ImageView(this)
+                //imageflip.setBackgroundResource(image[i])
+                Picasso
+                    .get() // give it the context
+                    .load(image[i]) // load the image
+                    .into(imageflip) // select the ImageView to load it into
 
 
-                        Intent(this@startSession,nextPose::class.java)
-                            .putExtra("image", image[i])
-                            .putExtra("val", i)
-                    )
-                    finish()
+                start.setOnClickListener {
+                    timer = object : CountDownTimer(time.toLong(), 1000) {
+                        override fun onTick(millisUntilFinished: Long) {
+                            left = millisUntilFinished.toInt() / 1000
+                            timerView.text = left.toString() + ""
+                        }
+
+                        override fun onFinish() {
+
+                            i++
+                            startActivity(
+
+
+                                Intent(this@startSession,nextPose::class.java)
+                                    .putExtra("image", image[i])
+                                    .putExtra("val", i)
+                            )
+                            finish()
+                        }
+                    }.start()
                 }
-            }.start()
-        }
-        pause.setOnClickListener {
-            if (timer != null) {
-                timer!!.cancel()
-                time = left * 1000
+                pause.setOnClickListener {
+                    if (timer != null) {
+                        timer!!.cancel()
+                        time = left * 1000
+                    }
+                }
+
+
+
             }
-        }
+            .addOnFailureListener { exception ->
+                Log.w("man==>", "Error getting documents.", exception)
+            }
+        //
 
     }
 

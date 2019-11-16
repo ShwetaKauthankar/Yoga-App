@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.nextpose.*
 
 class nextPose: AppCompatActivity() {
@@ -13,12 +14,16 @@ class nextPose: AppCompatActivity() {
         setContentView(R.layout.nextpose)
 
         var  i:Int
-        var  image:Int
+        var  image:String
         i = intent.getIntExtra("val",0)
-        image=intent.getIntExtra("image",0)
+        image=intent.getStringExtra("image")
 
         val view = ImageView(this)
-        nextimg.setBackgroundResource(image)
+       // nextimg.setBackgroundResource(image)
+        Picasso
+            .get() // give it the context
+            .load(image) // load the image
+            .into(nextimg)
 
         btnNext.setOnClickListener {
 

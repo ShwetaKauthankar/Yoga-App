@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 
 class MyListAdapter
     (var mCtx:Context,var resource:Int,var items:List<Yoga>) :ArrayAdapter<Yoga>(mCtx,resource,items){
@@ -19,9 +20,18 @@ class MyListAdapter
 
         val yoga:Yoga=items[position]
 
-        imageView.setImageDrawable(mCtx.resources.getDrawable(yoga.image))
+        //imageView.setImageDrawable(mCtx.resources.getDrawable(yoga.image))
+        // load the image with Picasso
+        Picasso
+            .get() // give it the context
+            .load(yoga.image) // load the image
+            .into(imageView) // select the ImageView to load it into
+
         textView.text=yoga.name
 
         return view
+
     }
 }
+
+

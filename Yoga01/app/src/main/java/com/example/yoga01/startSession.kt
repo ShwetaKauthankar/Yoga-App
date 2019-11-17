@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.start_session.*
@@ -41,7 +42,7 @@ class startSession: AppCompatActivity() {
         start = findViewById(R.id.btnStart)
         pause = findViewById(R.id.btnpause)
         imageflip=findViewById(R.id.v_flipper)
-        var i=0
+        var i :Int
 
 
         timerView.text = "60"
@@ -50,6 +51,7 @@ class startSession: AppCompatActivity() {
         var time = 10000
 
         i = intent.getIntExtra("val", 0)
+        Log.d("Start session ==>", "$i")
         if(i==9){
             startActivity(
                 Intent(this@startSession,MainActivity::class.java)
@@ -66,18 +68,22 @@ class startSession: AppCompatActivity() {
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    Log.d("main==>", "${document.id} => ${document.data}")
+                   // Log.d("main==>", "${document.id} => ${document.data}")
                    // list.add(Yoga(document.data.get("pose").toString(),document.data.get("name").toString()))
                     image.add(document.data.get("pose").toString())
                 }
 
                 val view = ImageView(this)
                 //imageflip.setBackgroundResource(image[i])
+                /*
                 Picasso
                     .get() // give it the context
                     .load(image[i]) // load the image
                     .into(imageflip) // select the ImageView to load it into
-
+                */
+                Glide.with(this)
+                    .load(image[i])
+                    .into(imageflip)
 
                 start.setOnClickListener {
                     timer = object : CountDownTimer(time.toLong(), 1000) {
@@ -89,6 +95,7 @@ class startSession: AppCompatActivity() {
                         override fun onFinish() {
 
                             i++
+                            Log.d("Start session bstnp==>", "$i")
                             startActivity(
 
 

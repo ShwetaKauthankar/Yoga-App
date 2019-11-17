@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 
 class MyListAdapter
@@ -22,10 +23,16 @@ class MyListAdapter
 
         //imageView.setImageDrawable(mCtx.resources.getDrawable(yoga.image))
         // load the image with Picasso
-        Picasso
+      /*  Picasso
             .get() // give it the context
             .load(yoga.image) // load the image
             .into(imageView) // select the ImageView to load it into
+
+        */
+        Glide.with(mCtx)
+            .load(yoga.image)
+            .into(imageView)
+
 
         textView.text=yoga.name
 

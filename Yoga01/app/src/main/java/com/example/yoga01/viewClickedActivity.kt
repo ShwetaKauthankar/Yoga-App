@@ -25,7 +25,7 @@ class viewClickedActivity: AppCompatActivity() {
         var list= mutableListOf<Yoga>()
             list.add(intent.getSerializableExtra("name")as Yoga)
 
-        val adpater:MyListAdapter= MyListAdapter(this,R.layout.my_list_iteam,list)
+        val adpater:MyListAdapter= MyListAdapter(this,R.layout.yoga_description,list,0)
         listview.adapter=adpater
 
 

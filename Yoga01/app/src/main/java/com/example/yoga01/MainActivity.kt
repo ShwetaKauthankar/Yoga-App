@@ -36,14 +36,16 @@ class MainActivity : AppCompatActivity() {
                         list.add(
                             Yoga(
                                 document.data.get("pose").toString(),
-                                document.data.get("name").toString()
+                                document.data.get("name").toString(),
+                                document.data.get("description").toString()
+
                             )
                         )
                     }
 
                 }
                 /////code
-                val adpater:MyListAdapter= MyListAdapter(this,R.layout.my_list_iteam,list)
+                val adpater:MyListAdapter= MyListAdapter(this,R.layout.my_list_iteam,list,1)
                 listview.adapter=adpater
 
                 listview.setOnItemClickListener{ adapterView, view, i, l ->

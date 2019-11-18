@@ -11,32 +11,48 @@ import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 
 class MyListAdapter
-    (var mCtx:Context,var resource:Int,var items:List<Yoga>) :ArrayAdapter<Yoga>(mCtx,resource,items){
+    (var mCtx:Context,var resource:Int,var items:List<Yoga>,val x:Int) :ArrayAdapter<Yoga>(mCtx,resource,items){
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val layoutInflater:LayoutInflater= LayoutInflater.from(mCtx)
-        val view:View=layoutInflater.inflate(resource,null)
-        val imageView:ImageView=view.findViewById(R.id.imageView)
-        val textView:TextView=view.findViewById(R.id.textView)
-
-        val yoga:Yoga=items[position]
-
-        //imageView.setImageDrawable(mCtx.resources.getDrawable(yoga.image))
-        // load the image with Picasso
-      /*  Picasso
-            .get() // give it the context
-            .load(yoga.image) // load the image
-            .into(imageView) // select the ImageView to load it into
-
-        */
-        Glide.with(mCtx)
-            .load(yoga.image)
-            .into(imageView)
 
 
-        textView.text=yoga.name
+            val layoutInflater: LayoutInflater = LayoutInflater.from(mCtx)
+            val view: View = layoutInflater.inflate(resource, null)
 
+        if (x==1) {
+            val imageView: ImageView = view.findViewById(R.id.imageView)
+            val textView: TextView = view.findViewById(R.id.textView)
+
+            val yoga: Yoga = items[position]
+
+
+            Glide.with(mCtx)
+                .load(yoga.image)
+                .into(imageView)
+
+
+            textView.text = yoga.name
+        }
+        else{
+            val imageView: ImageView = view.findViewById(R.id.imgV)
+            val textViewName: TextView = view.findViewById(R.id.poseName)
+            val textViewDes: TextView = view.findViewById(R.id.txtdescp)
+
+            val yoga: Yoga = items[position]
+
+
+            Glide.with(mCtx)
+                .load(yoga.image)
+                .into(imageView)
+
+
+            textViewName.text = yoga.name
+            textViewDes.text = yoga.description
+        }
         return view
+
+
+
 
     }
 }

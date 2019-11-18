@@ -38,6 +38,8 @@ class startSession: AppCompatActivity() {
         var timerView: TextView
         var start: Button
         var pause: Button
+        var dec:Boolean
+        dec=true
         timerView = findViewById(R.id.timer)
         start = findViewById(R.id.btnStart)
         pause = findViewById(R.id.btnpause)
@@ -86,28 +88,34 @@ class startSession: AppCompatActivity() {
                     .into(imageflip)
 
                 start.setOnClickListener {
-                    timer = object : CountDownTimer(time.toLong(), 1000) {
-                        override fun onTick(millisUntilFinished: Long) {
-                            left = millisUntilFinished.toInt() / 1000
-                            timerView.text = left.toString() + ""
-                        }
 
-                        override fun onFinish() {
+                    if (dec == true){
+                        dec=false
 
-                            i++
-                            Log.d("Start session bstnp==>", "$i")
-                            startActivity(
+                        timer = object : CountDownTimer(time.toLong(), 1000) {
+                            override fun onTick(millisUntilFinished: Long) {
+                                left = millisUntilFinished.toInt() / 1000
+                                timerView.text = left.toString() + ""
+                            }
+
+                            override fun onFinish() {
+
+                                i++
+                                Log.d("Start session bstnp==>", "$i")
+                                startActivity(
 
 
-                                Intent(this@startSession,nextPose::class.java)
-                                    .putExtra("image", image[i])
-                                    .putExtra("val", i)
-                            )
-                            finish()
-                        }
-                    }.start()
+                                    Intent(this@startSession, nextPose::class.java)
+                                        .putExtra("image", image[i])
+                                        .putExtra("val", i)
+                                )
+                                finish()
+                            }
+                        }.start()
+                }
                 }
                 pause.setOnClickListener {
+                    dec=true
                     if (timer != null) {
                         timer!!.cancel()
                         time = left * 1000

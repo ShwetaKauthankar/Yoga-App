@@ -64,13 +64,16 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         Log.d("StartActivity","${menuItem.itemId}")
         when (menuItem.itemId) {
             R.id.rem -> {
-                Toast.makeText(this, "Publication", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Reminder", Toast.LENGTH_SHORT).show()
             }
             R.id.todo -> {
-                Toast.makeText(this, "Android Store", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "To Do List", Toast.LENGTH_SHORT).show()
             }
             R.id.nutrition -> {
-                Toast.makeText(this, "Newsletter", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Nutrition", Toast.LENGTH_SHORT).show()
+            }
+            R.id.signout -> {
+                Toast.makeText(this, "Signout", Toast.LENGTH_SHORT).show()
             }
         }
 

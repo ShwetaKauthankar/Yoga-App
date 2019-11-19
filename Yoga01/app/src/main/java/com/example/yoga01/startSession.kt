@@ -48,7 +48,7 @@ class startSession: AppCompatActivity() {
 
 
         timerView.text = "60"
-        lateinit var timer: CountDownTimer
+        var timer: CountDownTimer? = null
         var left = 0
         var time = 10000
 

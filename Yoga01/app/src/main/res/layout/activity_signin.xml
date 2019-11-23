@@ -25,9 +25,11 @@
             android:id="@+id/imageView3"
             android:layout_width="385dp"
             android:layout_height="344dp"
-            app:srcCompat="@drawable/l"
-            tools:layout_editor_absoluteX="13dp"
-            tools:layout_editor_absoluteY="35dp" />
+            android:layout_marginTop="44dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/l" />
 
     <TextView
             android:id="@+id/title"

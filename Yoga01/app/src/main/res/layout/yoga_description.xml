@@ -32,7 +32,7 @@
     <TextView
             android:id="@+id/txtdescp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:fontFamily="@font/productsans_regular"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"

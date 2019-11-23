@@ -9,6 +9,12 @@ import android.widget.ListView
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import java.net.URL
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,46 +31,103 @@ class MainActivity : AppCompatActivity() {
         var list= mutableListOf<Yoga>()
 
         var  category = intent.getStringExtra("label")
+        val type:String
+        val calendar = Calendar.getInstance()
+        val day = calendar.get(Calendar.DAY_OF_WEEK)
+        Log.d("===>", "day data: ${day}")
+        val daysArray =
+            arrayOf<String>("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+
+        val dayname=daysArray[day-1]
+        if(category=="Beginner"){
+            type="B"
+        }
+        else if(category=="intermediate"){
+            type="I"
+        }
+        else{
+            type="E"
+        }
 // code which has been changed
         val db = FirebaseFirestore.getInstance()
-        db.collection("yoga-exercise")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d("main==>", "${document.id} => ${document.data}")
-                    if(document.data.get("category").toString()==category) {
-                        list.add(
-                            Yoga(
-                                document.data.get("pose").toString(),
-                                document.data.get("name").toString(),
-                                document.data.get("description").toString()
 
-                            )
-                        )
+
+
+       //===============================new code===========================
+
+        val documenttype:String
+        documenttype=dayname+"-"+type
+        Log.d("===>", "day data: ${documenttype}")
+        val docRef = db.collection("day").document(documenttype)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d("===>", "DocumentSnapshot data: ${document.data}")
+                    val element:String = document.data?.get("exercise").toString()
+                    Log.d("===>", "element data: ${element}")
+                    var exe:List<String> = element.substring(1,element.length-1).split("\\s*,\\s*")
+                    Log.d("===>", "exe: ${exe[0]}")
+                    var value:Array<String>
+                    value=subStr(exe[0])
+
+
+                    for(pose in value){
+                        Log.d("===>", "element data: ${pose}")
+
+                            val docRef = db.collection("yoga-exercise").document(pose)
+                            docRef.get()
+                                .addOnSuccessListener { document ->
+                                    if (document != null) {
+
+                                        list.add(
+                                            Yoga(
+                                                document.data?.get("pose").toString(),
+                                                document.data?.get("name").toString(),
+                                                document.data?.get("description").toString()
+
+                                            )
+                                        )
+
+                                        val adpater:MyListAdapter= MyListAdapter(this,R.layout.my_list_iteam,list,1)
+                                        listview.adapter=adpater
+
+                                        listview.setOnItemClickListener{ adapterView, view, i, l ->
+
+
+                                            var intent = Intent(this,viewClickedActivity::class.java)
+                                            intent.putExtra("name",list[i])
+                                            startActivity(intent)
+
+                                        }
+
+
+                                    } else {
+                                        Log.d("==>", "No such document")
+                                    }
+                                }
+                                .addOnFailureListener { exception ->
+                                    Log.d("==>", "get failed with ", exception)
+                                }
+
                     }
 
+
+
+
+                } else {
+                    Log.d("===>", "No such document")
                 }
-                /////code
-                val adpater:MyListAdapter= MyListAdapter(this,R.layout.my_list_iteam,list,1)
-                listview.adapter=adpater
-
-                listview.setOnItemClickListener{ adapterView, view, i, l ->
-
-
-                    var intent = Intent(this,viewClickedActivity::class.java)
-                    intent.putExtra("name",list[i])
-                    startActivity(intent)
-
-                }
-
-
 
 
             }
             .addOnFailureListener { exception ->
-                Log.w("man==>", "Error getting documents.", exception)
+                Log.d("===>", "get failed with ", exception)
             }
 
+
+
+
+        //===============================new code===========================
 
         btnStartSession.setOnClickListener {
 
@@ -75,6 +138,15 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+    fun subStr(exe:String): Array<String> {
+
+        val arrOfStr = exe.split(", ".toRegex(), 10).toTypedArray()
+
+        return arrOfStr
+    }
+
 }
 
 

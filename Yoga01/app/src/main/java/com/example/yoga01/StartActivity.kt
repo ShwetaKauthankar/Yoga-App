@@ -75,7 +75,7 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 val intent = Intent(this, NutritionActivity::class.java)
                 startActivity(intent)
             }
-            R.id.signout -> {
+            R.id.setting -> {
                 val intent = Intent(this, SignoutActivity::class.java)
                 startActivity(intent)
             }

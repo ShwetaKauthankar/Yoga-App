@@ -19,5 +19,9 @@
             android:layout_marginStart="175dp"
             android:layout_marginTop="68dp"
             android:layout_marginRight="177dp"
-            android:text="TextView" />
+            android:fontFamily="@font/productsans_regular"
+            android:text="TextView"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 </RelativeLayout>

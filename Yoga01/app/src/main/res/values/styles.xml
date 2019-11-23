@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="AppTheme.darkAccent">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 
 class SignoutActivity : AppCompatActivity() {
 
@@ -17,9 +18,15 @@ class SignoutActivity : AppCompatActivity() {
 
         val logoutButton=findViewById<Button>(R.id.logout)
         val userEmail = findViewById<TextView>(R.id.userEmail)
+        val profile_image = findViewById<ImageView>(R.id.profile_image)
 
 
-        userEmail.text = if (Auth.firebaseAuth.currentUser?.email.isNullOrEmpty()) Auth.firebaseAuth.currentUser?.phoneNumber else Auth.firebaseAuth.currentUser?.email
+        userEmail.text = Auth.firebaseAuth.currentUser?.email
+
+        if(Auth.firebaseAuth.currentUser?.photoUrl!=null){
+            Picasso.get().load(Auth.firebaseAuth.currentUser?.photoUrl).into(profile_image)
+
+        }
 
 
         logoutButton.setOnClickListener {

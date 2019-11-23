@@ -13,6 +13,8 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
@@ -111,8 +113,7 @@ class MainActivity : AppCompatActivity() {
 
                     }
 
-
-
+                    progressBar3.visibility=View.GONE
 
                 } else {
                     Log.d("===>", "No such document")

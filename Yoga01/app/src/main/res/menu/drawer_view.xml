@@ -20,8 +20,8 @@
             app:showAsAction="never" />
 
     <item
-            android:id="@+id/signout"
+            android:id="@+id/setting"
             android:orderInCategory="100"
-            android:title="Signout"
+            android:title="Setting"
             app:showAsAction="never" />
 </menu>

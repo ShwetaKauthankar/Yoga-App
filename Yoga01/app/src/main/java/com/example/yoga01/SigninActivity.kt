@@ -47,6 +47,7 @@ class SigninActivity : AppCompatActivity() {
 
     private fun signIn() {
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
+        mGoogleSignInClient.signOut()
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 

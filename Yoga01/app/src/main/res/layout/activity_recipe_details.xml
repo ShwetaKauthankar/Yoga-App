@@ -4,12 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".NutritionActivity">
+        tools:context=".RecipeDetailsActivity">
 
-    <ListView
-            android:id="@+id/recipe_list_view"
-            android:layout_width="383dp"
-            android:layout_height="591dp"
+    <WebView
+            android:id="@+id/detail_web_view"
+            android:layout_width="409dp"
+            android:layout_height="729dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

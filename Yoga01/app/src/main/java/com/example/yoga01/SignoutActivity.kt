@@ -31,7 +31,7 @@ class SignoutActivity : AppCompatActivity() {
         Auth.firebaseAuth.addAuthStateListener {
             if(!Auth.authenticated){
                 this.finish()
-                val loginIntent  = Intent(this,StartActivity::class.java)
+                val loginIntent  = Intent(this,Check::class.java)
                 startActivity(loginIntent)
             }
         }

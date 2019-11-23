@@ -29,6 +29,8 @@
         <activity android:name=".viewClickedActivity" />
         <activity android:name=".startSession" />
         <activity android:name=".nextPose" />
+        <activity android:name=".Alarm" />
+        <activity android:name=".SignoutActivity" />
 
         <receiver android:name=".myBroadcastReceiver">
             <intent-filter>

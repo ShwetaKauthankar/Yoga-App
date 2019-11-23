@@ -64,16 +64,20 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         Log.d("StartActivity","${menuItem.itemId}")
         when (menuItem.itemId) {
             R.id.rem -> {
-                Toast.makeText(this, "Reminder", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, Alarm::class.java)
+                startActivity(intent)
             }
-            R.id.todo -> {
-                Toast.makeText(this, "To Do List", Toast.LENGTH_SHORT).show()
+            R.id.bmi -> {
+                    val intent = Intent(this, BMIActivity::class.java)
+                    startActivity(intent)
             }
             R.id.nutrition -> {
-                Toast.makeText(this, "Nutrition", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, NutritionActivity::class.java)
+                startActivity(intent)
             }
             R.id.signout -> {
-                Toast.makeText(this, "Signout", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, SignoutActivity::class.java)
+                startActivity(intent)
             }
         }
 

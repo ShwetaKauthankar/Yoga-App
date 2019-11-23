@@ -3,8 +3,6 @@ package com.example.yoga01
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.yogaalarm.PopTime
-import com.example.yogaalarm.SaveData
 import kotlinx.android.synthetic.main.alarm.*
 
 class Alarm : AppCompatActivity() {

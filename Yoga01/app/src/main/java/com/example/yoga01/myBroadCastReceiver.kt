@@ -3,8 +3,7 @@ package com.example.yoga01
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.example.yogaalarm.Notifications
-import com.example.yogaalarm.SaveData
+
 
 class myBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {

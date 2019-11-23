@@ -1,4 +1,4 @@
-package com.example.yogaalarm
+package com.example.yoga01
 
 import android.app.Notification
 import android.app.NotificationManager

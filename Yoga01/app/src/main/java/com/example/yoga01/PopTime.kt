@@ -1,4 +1,4 @@
-package com.example.yogaalarm
+package com.example.yoga01
 
 import android.os.Build
 import android.os.Bundle
@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
-import com.example.yoga01.Alarm
-import com.example.yoga01.R
 
 class PopTime:DialogFragment() {
 

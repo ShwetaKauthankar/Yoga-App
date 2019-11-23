@@ -8,9 +8,9 @@
             app:showAsAction="never" />
 
     <item
-            android:id="@+id/todo"
+            android:id="@+id/bmi"
             android:orderInCategory="100"
-            android:title="To do List"
+            android:title="Body Mass Index"
             app:showAsAction="never" />
 
     <item

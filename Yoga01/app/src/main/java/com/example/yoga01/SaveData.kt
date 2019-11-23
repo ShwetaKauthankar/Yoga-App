@@ -1,11 +1,10 @@
-package com.example.yogaalarm
+package com.example.yoga01
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import com.example.yoga01.myBroadcastReceiver
 import java.util.*
 
 class SaveData {
